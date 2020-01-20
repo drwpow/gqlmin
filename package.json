@@ -1,0 +1,89 @@
+{
+  "name": "gqlmin",
+  "version": "0.0.0",
+  "description": "4 kB (gzip) GraphQL query minifier",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dangodev/gqlmin.git"
+  },
+  "keywords": [
+    "graphql",
+    "gql",
+    "query",
+    "minify",
+    "esm",
+    "es",
+    "modules"
+  ],
+  "bin": {
+    "gqlmin": "bin/cli.js"
+  },
+  "author": {
+    "email": "drew@pow.rs",
+    "name": "Drew Powers"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dangodev/gqlmin/issues"
+  },
+  "homepage": "https://github.com/dangodev/gqlmin#readme",
+  "scripts": {
+    "build": "pika build && npm run minify",
+    "minify": "terser pkg/dist-web/index.js -o pkg/dist-web/index.js -m",
+    "lint": "eslint --ext .js,.ts,.tsx src",
+    "publish": "pika publish",
+    "pretest": "npm run build && ./pkg/bin/cli.js ./__test__/example.graphql -o ./__test__/example.min.graphql",
+    "test": "jest",
+    "version": "npm run build"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-copy-assets",
+        {
+          "files": [
+            "bin/"
+          ]
+        }
+      ],
+      [
+        "pika-plugin-unpkg-field"
+      ]
+    ]
+  },
+  "dependencies": {
+    "@types/moo": "^0.5.1",
+    "moo": "^0.5.1"
+  },
+  "devDependencies": {
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.8.1",
+    "@pika/plugin-build-web": "^0.8.1",
+    "@pika/plugin-copy-assets": "^0.8.1",
+    "@pika/plugin-ts-standard-pkg": "^0.8.1",
+    "@types/jest": "^24.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "chalk": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "fs-extra": "^8.1.0",
+    "jest": "^24.9.0",
+    "meow": "^6.0.0",
+    "pika-plugin-unpkg-field": "^1.1.0",
+    "prettier": "^1.19.1",
+    "terser": "^4.6.3",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.5"
+  }
+}

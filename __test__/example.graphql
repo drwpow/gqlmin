@@ -1,0 +1,11 @@
+query allProducts {
+  products {
+    name
+    price
+    tags
+    image {
+      medium
+      large
+    }
+  }
+}
