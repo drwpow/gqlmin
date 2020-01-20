@@ -1,7 +1,7 @@
 {
   "name": "gqlmin",
   "version": "0.0.1",
-  "description": "4 kB (gzip) GraphQL query minifier",
+  "description": "< 1 kB GraphQL query minifier",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dangodev/gqlmin.git"
@@ -34,6 +34,7 @@
     "publish": "pika publish",
     "pretest": "npm run build && ./pkg/bin/cli.js ./__test__/example.graphql -o ./__test__/example.min.graphql",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "version": "npm run build"
   },
   "@pika/pack": {

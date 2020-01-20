@@ -1,3 +1,4 @@
 __test__/example.min.graphql
+coverage
 node_modules
 pkg

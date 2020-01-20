@@ -1,12 +1,12 @@
+[![version (scoped)](https://img.shields.io/npm/v/gqlmin.svg)](https://www.npmjs.com/package/gqlmin)
+[![minzip](https://badgen.net/bundlephobia/minzip/gqlmin)](https://bundlephobia.com/gqlmin)
+[![codecov](https://codecov.io/gh/dangodev/gqlmin/branch/master/graph/badge.svg)](https://codecov.io/gh/dangodev/gqlmin)
+
 # 🗜 gqlmin
 
-4 kB (gzip) GraphQL query minifier.
+`< 1 kB` GraphQL query minifier (`3.4 kB` (gzip) if you include its only dependency, [Moo][moo]).
 
 This library removes all insignificant whitespace within a GraphQL query, as well as comments.
-
-The actual library itself is `843 bytes`; the `4 kB` includes [Moo][moo], the lexer it uses.
-
-###
 
 ## Usage
 
@@ -36,6 +36,9 @@ const minified = gqlmin(query);
 console.log(minified);
 // query allProducts{products{name price …
 ```
+
+_Note: for Node.js < 13.3.0 or if ES Modules aren’t supported, use
+`const gqlmin = require('gqlmin')` instead._
 
 ### CLI
 
