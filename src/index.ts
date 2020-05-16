@@ -1,7 +1,7 @@
-import { states } from 'moo';
+import moo from 'moo';
 
 export default function minify(query: string) {
-  const lexer = states({
+  const lexer = moo.states({
     main: {
       comment: /#.*$/,
       blockString: { match: /:\s*"""/, push: 'blockString' }, // treat these differently from descriptions
