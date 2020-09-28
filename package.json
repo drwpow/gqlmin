@@ -83,7 +83,7 @@
     "meow": "^7.0.1",
     "pika-plugin-unpkg-field": "^1.1.0",
     "prettier": "^2.0.5",
-    "terser": "^4.6.13",
+    "terser": "^5.3.3",
     "ts-jest": "^26.0.0",
     "typescript": "^3.9.2"
   }
