@@ -62,7 +62,7 @@
     ]
   },
   "dependencies": {
-    "@types/moo": "^0.5.3",
+    "@types/moo": "^0.5.5",
     "moo": "^0.5.1"
   },
   "devDependencies": {
