@@ -37,9 +37,6 @@ console.log(minified);
 // query allProducts{products{name price …
 ```
 
-_Note: for Node.js < 13.3.0 or if ES Modules aren’t supported, use
-`const gqlmin = require('gqlmin')` instead._
-
 ### CLI
 
 ```
