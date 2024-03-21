@@ -30,7 +30,7 @@
     "build:ts": "tsc",
     "lint": "eslint --ext .js,.ts,.tsx src",
     "test": "vitest run",
-    "version": "npm run build"
+    "version": "pnpm run build"
   },
   "dependencies": {
     "@types/moo": "^0.5.9",
