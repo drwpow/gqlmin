@@ -1,6 +1,6 @@
 [![version (scoped)](https://img.shields.io/npm/v/gqlmin.svg)](https://www.npmjs.com/package/gqlmin)
 [![minzip](https://badgen.net/bundlephobia/minzip/gqlmin)](https://bundlephobia.com/gqlmin)
-[![codecov](https://codecov.io/gh/dangodev/gqlmin/branch/master/graph/badge.svg)](https://codecov.io/gh/dangodev/gqlmin)
+[![codecov](https://codecov.io/gh/drwpow/gqlmin/branch/master/graph/badge.svg)](https://codecov.io/gh/drwpow/gqlmin)
 
 # 🗜 gqlmin
 
