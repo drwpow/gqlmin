@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import minify from '../src/index';
 
 describe('minify function', () => {

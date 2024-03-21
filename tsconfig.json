@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "allowUnreachableCode": false,
+    "baseUrl": ".",
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "noImplicitAny": true,
     "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "outDir": "dist",
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "esnext"
+    "target": "ESNext"
   },
-  "include": ["."],
-  "exclude": ["node_modules", "__test__"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

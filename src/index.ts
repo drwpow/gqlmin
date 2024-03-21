@@ -45,9 +45,9 @@ export default function minify(query: string) {
       // handle whitespace surrounding IDs
       if (type === 'ws') {
         return tokens[i - 1] &&
-          tokens[i - 1].type === 'id' &&
+          tokens[i - 1]!.type === 'id' &&
           tokens[i + 1] &&
-          tokens[i + 1].type === 'id'
+          tokens[i + 1]!.type === 'id'
           ? ' ' // if ws is between two IDs, reduce to single space
           : ''; // otherwise remove
       }
