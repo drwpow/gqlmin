@@ -88,5 +88,28 @@ describe('minify function', () => {
           query"""){label displayName logo}}`;
       expect(minify(query)).toBe(minified);
     });
+
+    it('preserves space between multiline variables and identifiers', () => {
+      const query = `
+        query GET_PRODUCT(
+          $displayName: String!
+          $includeDetails: Boolean!
+        ) {
+          product(
+            first: 1
+            preview: $includeDetails
+            where: {
+              displayName: $displayName
+            }
+          ) {
+            label
+            displayName
+            logo
+          }
+        }
+      `;
+      const minified = `query GET_PRODUCT($displayName:String! $includeDetails:Boolean!){product(first:1 preview:$includeDetails where:{displayName:$displayName}){label displayName logo}}`;
+      expect(minify(query)).toBe(minified);
+    });
   });
 });
