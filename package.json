@@ -1,6 +1,6 @@
 {
   "name": "gqlmin",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "< 1 kB GraphQL query minifier",
   "type": "module",
   "packageManager": "pnpm@10.14.0",
