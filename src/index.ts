@@ -8,7 +8,7 @@ export default function minify(query: string) {
       description: { match: '"""', push: 'description' },
       string: /"(?:\\"|[^"])*"/,
       variable: /\$[A-z\d]+/,
-      id: /[A-z\d]+/,
+      id: /[A-z\d]+!?/,
       ws: { match: /[\s\t]+/, lineBreaks: true }, // whitespace to be removed
       any: /./,
     },
@@ -42,13 +42,15 @@ export default function minify(query: string) {
         // trim whitespace within multi-line arguments
         return value.replace(/\s*/g, '');
       }
-      // handle whitespace surrounding IDs
+      // handle whitespace surrounding IDs and variables
       if (type === 'ws') {
-        return tokens[i - 1] &&
-          tokens[i - 1]!.type === 'id' &&
-          tokens[i + 1] &&
-          tokens[i + 1]!.type === 'id'
-          ? ' ' // if ws is between two IDs, reduce to single space
+        const prevType = tokens[i - 1]?.type;
+        const nextType = tokens[i + 1]?.type;
+
+        return (prevType === 'id' && nextType === 'id') ||
+          (prevType === 'variable' && nextType === 'id') ||
+          (prevType === 'id' && nextType === 'variable')
+          ? ' ' // preserve space between these token combinations
           : ''; // otherwise remove
       }
       return value;
