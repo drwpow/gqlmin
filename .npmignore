@@ -1,5 +1,5 @@
 __test__
-.eslintrc
+*.config.*
 .github
 .prettierrc
-vitest.config.ts
+tsconfig.*
