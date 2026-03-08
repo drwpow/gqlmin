@@ -1,34 +1,40 @@
 import moo from 'moo';
 
+// preserve precompiled lexer across runs
+const lexer = moo.states({
+  main: {
+    comment: /#.*$/,
+    blockString: { match: /:\s*"""/, push: 'blockString' }, // treat these differently from descriptions
+    description: { match: '"""', push: 'description' },
+    string: /"(?:\\"|[^"])*"/,
+    variable: /\$[A-z\d]+/,
+    id: /[A-z\d]+!?/,
+    ws: { match: /[\s\t]+/, lineBreaks: true }, // whitespace to be removed
+    any: /./,
+  },
+  description: {
+    descriptionEnd: { match: '"""', pop: 1 }, // exit description
+    ws: { match: /[\s\t]+/, lineBreaks: true },
+    description: /./,
+  },
+  blockString: {
+    esc: { match: '"""', pop: 1 }, // exit block string
+    stringSpace: { match: /[\s\t]+/, lineBreaks: true },
+    any: /./,
+  },
+});
+
 export default function minify(query: string) {
-  const lexer = moo.states({
-    main: {
-      comment: /#.*$/,
-      blockString: { match: /:\s*"""/, push: 'blockString' }, // treat these differently from descriptions
-      description: { match: '"""', push: 'description' },
-      string: /"(?:\\"|[^"])*"/,
-      variable: /\$[A-z\d]+/,
-      id: /[A-z\d]+!?/,
-      ws: { match: /[\s\t]+/, lineBreaks: true }, // whitespace to be removed
-      any: /./,
-    },
-    description: {
-      descriptionEnd: { match: '"""', pop: 1 }, // exit description
-      ws: { match: /[\s\t]+/, lineBreaks: true },
-      description: /./,
-    },
-    blockString: {
-      esc: { match: '"""', pop: 1 }, // exit block string
-      stringSpace: { match: /[\s\t]+/, lineBreaks: true },
-      any: /./,
-    },
-  });
   lexer.reset(query);
 
   // filter out comments & descriptions to make ws removal easier
   let withoutComments = '';
   for (const { type, value } of lexer) {
-    if (type !== 'comment' && type !== 'description' && type !== 'descriptionEnd') {
+    if (
+      type !== 'comment' &&
+      type !== 'description' &&
+      type !== 'descriptionEnd'
+    ) {
       withoutComments += value;
     }
   }
